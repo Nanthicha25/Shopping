@@ -48,7 +48,49 @@ public class ShoppingCartManualTest {
             failedCount++;
         }
 
-        // --- Test Summary ---
+        // Test 4: คำนวณมีส่วนลดจากการแถม
+        ArrayList<CartItem> promotion1 = new ArrayList<>();
+        promotion1.add(new CartItem("BOGO", "Bread", 25.0, 4)); //50
+        double total4 = ShoppingCartCalculator.calculateTotalPrice(promotion1);
+            if (total4 == 50.0) {
+            System.out.println("PASSED: Promotion1 total is correct (50.0)");
+            passedCount++;
+        }else {
+            System.out.println("FAILED: Promotion1 total expected 50.0 but got " + total4);
+            failedCount++;
+        }
+         promotion1.clear();
+        promotion1.add(new CartItem("BOGO", "Milk", 15.0, 3));      // 30
+        total4 = ShoppingCartCalculator.calculateTotalPrice(promotion1);
+        if (total4 == 30.0) {
+            System.out.println("PASSED: Promotion1 total is correct (30.0)");
+            passedCount++;}
+        else {
+            System.out.println("FAILED: Promotion1 total expected 30.0 but got " + total4);
+            failedCount++;
+        }
+        
+        // Test 5: คำนวณปกติ ไม่มีส่วนลด
+        ArrayList<CartItem> promotion2 = new ArrayList<>();
+        promotion2.add(new CartItem("BULK", "Bread", 25.0, 6)); //135
+        double total5 = ShoppingCartCalculator.calculateTotalPrice(promotion2);
+            if (total5 == 135.0) {
+            System.out.println("PASSED: Promotion2 total is correct (135.0)");
+            passedCount++;}
+            else {    System.out.println("FAILED: Promotion2 total expected 135.0 but got " + total5);
+            failedCount++;
+        }
+         promotion2.clear();
+        promotion2.add(new CartItem("BULK", "Milk", 15.0, 8));      // 108
+        total5 = ShoppingCartCalculator.calculateTotalPrice(promotion2);
+        if (total5 == 108.0) {
+            System.out.println("PASSED: Promotion2 total is correct (108.0)");
+            passedCount++;}
+        else {
+            System.out.println("FAILED: Promotion2 total expected 108.0 but got " + total5);
+            failedCount++;
+        }
+     // --- Test Summary ---
         System.out.println("\n--------------------");
         System.out.println("--- Test Summary ---");
         System.out.println("Passed: " + passedCount + ", Failed: " + failedCount);
